@@ -1,5 +1,5 @@
 // Configuración CRÍTICA: Reemplaza con tus URLs
-const APPS_SCRIPT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby3lUiGZdXebPWqaIhLZ0MUvBlqRJveKfPBBYJu_cpeCDal6dSse8Xb3QjnPVInwokp0A/exec'; // URL de tu App Web
+const APPS_SCRIPT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzBp0XkblENy8GdaL1ebz46WNtNbz_xRz3c9ybO6PJ-ghVpV5To1Fn7yCU46Ppnc8GIAw/exec'; // URL de tu App Web
 const APPS_SCRIPT_API_ENDPOINT = 'https://script.googleapis.com/v1/scripts/...:run'; // Solo si usas API Executable
 
 let userEmail = null; // Aquí guardaremos el email del usuario logueado
