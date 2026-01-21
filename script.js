@@ -19,29 +19,31 @@ async function processInvoice() {
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = '<p>🔄 Enviando datos de prueba a la API...</p>';
 
-    // Este es un payload de ejemplo, similar al que enviarás luego
+    // 1. SIMULAMOS los datos que luego vendrán del login y el archivo
     const payloadDePrueba = {
-        email: 'usuario_prueba@ejemplo.com',
+        email: 'usuario_prueba@ejemplo.com', // Esto luego será `userEmail`
         tipo: 'compra',
-        mensaje: 'Esto es una prueba de conexión.'
+        test: true,
+        mensaje: 'Primera conexión exitosa con ContaAuto.'
     };
 
     try {
-        // APPS_SCRIPT_WEB_APP_URL es la variable que ya tienes con tu URL
-        const response = await fetch(APPS_SCRIPT_WEB_APP_URL, {
+        // 2. ENVIAMOS los datos a tu Apps Script (POST)
+        const response = await fetch(APPS_SCRIPT_WEB_APP_URL, { // Asegúrate de que esta variable tiene tu URL
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payloadDePrueba)
         });
 
-        const data = await response.json(); // Tu doPost debe devolver JSON
-        resultDiv.innerHTML = `<p style="color:green;">✅ Prueba exitosa.</p><p>Respuesta: ${data.message}</p>`;
-        console.log('Respuesta detallada:', data);
+        // 3. PROCESAMOS la respuesta
+        const data = await response.json();
+        console.log('✅ Respuesta del servidor:', data);
+        resultDiv.innerHTML = `<p style="color:green;"><strong>✅ ¡Conexión exitosa!</strong></p>
+                               <p>El backend recibió: ${data.message || 'Sin mensaje'}</p>`;
 
     } catch (error) {
-        resultDiv.innerHTML = `<p style="color:red;">❌ Error en la prueba: ${error.message}</p>`;
-        console.error('Error detallado:', error);
+        console.error('❌ Error en la conexión:', error);
+        resultDiv.innerHTML = `<p style="color:red;"><strong>❌ Error de conexión</strong></p>
+                               <p>Detalle: ${error.message}</p>`;
     }
 }
