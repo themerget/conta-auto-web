@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContaAuto - Tu contabilidad automática</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Carga del SDK de Google para identificación -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 ContaAuto</h1>
+        <p>Sube una factura y automatiza tu contabilidad en Google Sheets.</p>
+
+        <!-- Botón de Login de Google -->
+        <div id="g_id_onload"
+             data-client_id="TU_CLIENT_ID_AQUI"
+             data-login_uri="https://TU_APPS_SCRIPT_URL/exec"
+             data-auto_prompt="false">
+        </div>
+        <div class="g_id_signin"
+             data-type="standard"
+             data-size="large"
+             data-theme="outline"
+             data-text="sign_in_with"
+             data-shape="rectangular"
+             data-logo_alignment="left">
+        </div>
+
+        <!-- Zona de subida de archivos (inicialmente oculta) -->
+        <div id="uploadSection" style="display: none;">
+            <h2>Procesar nueva factura</h2>
+            <input type="file" id="fileInput" accept=".pdf,.jpg,.jpeg,.png">
+            <select id="invoiceType">
+                <option value="compra">Factura de Compra (Gasto)</option>
+                <option value="venta">Factura de Venta (Ingreso)</option>
+            </select>
+            <button onclick="processInvoice()">Procesar Factura</button>
+            <div id="result"></div>
+        </div>
+
+        <!-- Enlace a la hoja resultante -->
+        <div id="sheetLink" style="display: none; margin-top: 20px;">
+            <p>✅ Factura procesada. <a id="openSheetLink" href="#" target="_blank">Abrir tu Google Sheet</a></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
